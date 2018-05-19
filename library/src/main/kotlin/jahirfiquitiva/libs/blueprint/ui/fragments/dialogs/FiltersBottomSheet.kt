@@ -120,7 +120,7 @@ class FiltersBottomSheet : BottomSheetDialogFragment() {
     }
     
     private fun updateFilters(actualFilters: ArrayList<Filter>) {
-        adapter.submitList(ArrayList())
+        // adapter.submitList(ArrayList())
         postDelayed(10) {
             adapter.submitList(actualFilters)
             progress?.gone()

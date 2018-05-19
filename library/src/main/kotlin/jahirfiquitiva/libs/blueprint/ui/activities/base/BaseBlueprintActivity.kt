@@ -68,6 +68,7 @@ import jahirfiquitiva.libs.blueprint.ui.fragments.HomeFragment
 import jahirfiquitiva.libs.blueprint.ui.fragments.IconsFragment
 import jahirfiquitiva.libs.blueprint.ui.fragments.RequestsFragment
 import jahirfiquitiva.libs.blueprint.ui.fragments.WallpapersFragment
+import jahirfiquitiva.libs.blueprint.ui.fragments.dialogs.FiltersBottomSheet
 import jahirfiquitiva.libs.blueprint.ui.items.FilterDrawerItem
 import jahirfiquitiva.libs.blueprint.ui.items.FilterTitleDrawerItem
 import jahirfiquitiva.libs.frames.helpers.extensions.buildMaterialDialog
@@ -335,7 +336,10 @@ abstract class BaseBlueprintActivity : BaseFramesActivity<BPKonfigs>(),
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         item?.let {
             when (it.itemId) {
-                R.id.filters -> if (iconsFilters.isNotEmpty()) filtersDrawer?.openDrawer()
+                R.id.filters -> {
+                    // if (iconsFilters.isNotEmpty()) filtersDrawer?.openDrawer()
+                    FiltersBottomSheet.show(this@BaseBlueprintActivity, iconsFilters, activeFilters)
+                }
                 R.id.refresh -> {
                     refreshWallpapers()
                     refreshRequests()

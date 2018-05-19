@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.ColorInt
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
+import android.support.v7.util.DiffUtil
 import jahirfiquitiva.libs.blueprint.R
 import jahirfiquitiva.libs.blueprint.helpers.utils.DEFAULT_APPLY_SECTION_ID
 import jahirfiquitiva.libs.blueprint.helpers.utils.DEFAULT_HOME_SECTION_ID
@@ -88,4 +89,20 @@ enum class NavigationItem(
                     R.drawable.ic_request);
     
     override fun toString(): String = "NavigationItem[$tag - $id]"
+}
+
+data class Filter(val title: String, @ColorInt val color: Int, val selected: Boolean) {
+    companion object {
+        val CALLBACK = object : DiffUtil.ItemCallback<Filter>() {
+            override fun areItemsTheSame(oldItem: Filter?, newItem: Filter?): Boolean {
+                oldItem ?: return false
+                newItem ?: return false
+                return oldItem.title == newItem.title
+            }
+            
+            override fun areContentsTheSame(oldItem: Filter?, newItem: Filter?): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }
